@@ -4,8 +4,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     // Environment Settings
-    "module": "commonjs",
-    "target": "es2020",
+    "module":"esnext",
+    "target": "es2023",
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
@@ -18,7 +18,11 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-  }
+    "esModuleInterop": true,
+    "noImplicitAny": true
+  },
+    "include": ["src/**/*"],
 }
