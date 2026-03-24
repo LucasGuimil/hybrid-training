@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
+    "start": "node --env-file=./.env.prod dist/index.js",
+    "dev": "tsx --env-file=./.env src/index.ts",
     "build": "tsc"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^6.19.2",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "pg": "^8.20.0"
   }
