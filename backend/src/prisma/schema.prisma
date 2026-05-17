@@ -14,7 +14,7 @@ model Exercise {
   muscleGroup String
   timeBased Boolean  @default(false)
   category String
-  image String
+  image String?
   setLogs ExerciseSet[]
 }
 

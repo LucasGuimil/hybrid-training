@@ -1,7 +1,5 @@
-import express from 'express';
 import { dbConnection } from './config/database.js';
-const app = express();
-app.use(express.json());
+import app from './app.js';
 const PORT = process.env.PORT;
 
 const initializeServer = () => {
