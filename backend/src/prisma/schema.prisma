@@ -8,34 +8,33 @@ datasource db {
 }
 
 model Exercise {
-  id String @id @default(uuid())
-  name String 
+  id          String        @id @default(uuid())
+  name        String
+  image       String?
+  category    String
   description String?
   muscleGroup String
-  timeBased Boolean  @default(false)
-  category String
-  image String?
-  setLogs ExerciseSet[]
+  timeBased   Boolean       @default(false)
+  setLogs     ExerciseSet[]
 }
 
 model WorkoutSession {
-  id String @id @default(uuid())
-  title String?
-  date DateTime @default(now())
-  notes String?
-  duration Int?
+  id           String        @id @default(uuid())
+  title        String?
+  date         DateTime      @default(now())
+  notes        String?
+  duration     Int?
   exerciseSets ExerciseSet[]
 }
 
 model ExerciseSet {
-  id String @id @default(uuid())
-  reps Int?
-  weight Float?
-  restTime Int? 
-  isCompleted Boolean @default(false)
-  exercise Exercise @relation(fields: [exerciseId], references: [id])
-  exerciseId String
-  session WorkoutSession @relation(fields: [sessionId], references: [id])
-  sessionId String
+  id          String         @id @default(uuid())
+  reps        Int?
+  weight      Float?
+  restTime    Int?
+  isCompleted Boolean        @default(false)
+  exerciseId  String
+  sessionId   String
+  exercise    Exercise       @relation(fields: [exerciseId], references: [id])
+  session     WorkoutSession @relation(fields: [sessionId], references: [id])
 }
-
