@@ -37,11 +37,13 @@ jobs:
         run: npm ci
       - name: Generate Prisma client
         run: npx prisma generate
+        env: 
+            DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db?schema=public
       - name: Sync Prisma schema with database
         run: npx prisma db push
         env:
-          DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db
+          DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db?schema=public
       - name: Run tests
         run: npm test
         env:
-          DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db
+          DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db?schema=public
