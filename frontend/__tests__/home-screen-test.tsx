@@ -19,12 +19,12 @@ describe('<HomeScreen />', () => {
   afterEach(() => { 
     jest.restoreAllMocks()}
   )
-  it('When loading, displays the loading indicator', async () => {
+  test('When loading, displays the loading indicator', async () => {
     await render(<HomeScreen />)
     const loading = screen.getByTestId('loading-indicator')
     return expect(loading).toBeOnTheScreen()
   });
-  it('When loaded, displays all the excercises', async () => {
+  test('When loaded, displays all the excercises', async () => {
     await render(<HomeScreen />)
       resolveFetch({
         json: () => Promise.resolve([      
