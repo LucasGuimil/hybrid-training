@@ -39,6 +39,8 @@ jobs:
         run: npx prisma generate
         env: 
             DATABASE_URL: postgresql://admin_test:password_test@localhost:5432/hybrid_test_db?schema=public
+      - name: Generate Mock ENV
+        run: echo "DATABASE_URL=postgresql://admin_test:password_test@localhost:5432/hybrid_test_db?schema=public" > .env.test
       - name: Sync Prisma schema with database
         run: npx prisma db push
         env:
