@@ -10,7 +10,7 @@ before( ()=> {
     execSync('npx prisma db push')
 })
 
-describe('GET /api/excercises', () => {
+describe('GET /api/exercises', () => {
     beforeEach( async () => { await prisma.exercise.deleteMany() })
     test('should return an empty array when there are no exercises', async () => {
         const response = await request.get('/api/exercises');
@@ -26,7 +26,7 @@ describe('GET /api/excercises', () => {
     })
 })
 
-describe('POST /api/excercises', () => {
+describe('POST /api/exercises', () => {
     beforeEach( async () => { await prisma.exercise.deleteMany() })
     test('should create a new exercise', async () => {
         const response = await request.post('/api/exercises').send({
