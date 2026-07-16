@@ -13,13 +13,13 @@ before( ()=> {
 describe('GET /api/excercises', () => {
     beforeEach( async () => { await prisma.exercise.deleteMany() })
     test('should return an empty array when there are no exercises', async () => {
-        const response = await request.get('/api/excercises');
+        const response = await request.get('/api/exercises');
         assert.strictEqual(response.status, 200);
         assert(Array.isArray(response.body), 'Response should be an array');
         });
     test("should return all the exercises in the database", async ()=> {
         await prisma.exercise.create({data: {name: "Pull Up", muscleGroup: "Back", category: "Calisthenics"}})   
-        const response = await request.get('/api/excercises');
+        const response = await request.get('/api/exercises');
         assert.strictEqual(response.status, 200);
         assert.strictEqual(response.body.length, 1);
         assert.strictEqual(response.body[0].name, "Pull Up");
@@ -29,7 +29,7 @@ describe('GET /api/excercises', () => {
 describe('POST /api/excercises', () => {
     beforeEach( async () => { await prisma.exercise.deleteMany() })
     test('should create a new exercise', async () => {
-        const response = await request.post('/api/excercises').send({
+        const response = await request.post('/api/exercises').send({
             name: "Push Up",
             muscleGroup: "Chest",
             category: "Calisthenics"
@@ -38,14 +38,14 @@ describe('POST /api/excercises', () => {
         assert.strictEqual(response.body.name, "Push Up");
     });
     test("should return 400 if required fields are missing", async () => {
-        const response = await request.post('/api/excercises').send({
+        const response = await request.post('/api/exercises').send({
             name: "Squat"
         });
         assert.strictEqual(response.status, 400);
     });
     test("should check if the exercise already exists", async () => {
         await prisma.exercise.create({data: {name: "Bulgarian Split Squat", muscleGroup: "Legs", category: "Calisthenics"}})
-        const response = await request.post('/api/excercises').send({
+        const response = await request.post('/api/exercises').send({
             name: "Bulgarian Split Squat",
             muscleGroup: "Legs",
             category: "Calisthenics"
