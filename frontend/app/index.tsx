@@ -37,7 +37,7 @@ export default function HomeScreen() {
   
   if (loading) {
     return (
-      <View style={styles.center}>
+      <View style={styles.center} testID="loading-indicator">
         <ActivityIndicator size="large" color="#01015f" />
         <Text>Loading exercises...</Text>
       </View>
@@ -46,7 +46,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Exercises</Text>
-      <FlatList data={exercises} keyExtractor={(item)=> item.id}
+      <FlatList testID="exercises-list" data={exercises} keyExtractor={(item)=> item.id}
         renderItem={({item}) => (
           <View style={styles.card}>
             <Text style={styles.cardTitle}>{item.name}</Text>
