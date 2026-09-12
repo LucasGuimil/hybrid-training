@@ -1,43 +1,45 @@
-import { render, screen } from '@testing-library/react-native'
-
+import { render, screen, userEvent } from '@testing-library/react-native'
+import { useRouter } from 'expo-router';
 import HomeScreen from '@/app/index';
 
-type resolveFetchType = (value: Response) => void;
+jest.mock("expo-router", () => ({
+  useRouter: jest.fn()
+}))
+
 
 describe('<HomeScreen />', () => {
-  let fetchSpy: jest.SpyInstance;
-  let resolveFetch: resolveFetchType;
-  
+  const mockNavigate = jest.fn()
+  const user = userEvent.setup()
   beforeEach(() => {
-    fetchSpy = jest.spyOn(global, 'fetch').mockImplementation(() =>
-      new Promise((resolve) => {
-        resolveFetch = resolve;
-      }
-    ))
+    (useRouter as unknown as jest.Mock).mockReturnValue({navigate: mockNavigate})
   })
-
-  afterEach(() => { 
-    jest.restoreAllMocks()}
-  )
-  test('When loading, displays the loading indicator', async () => {
+  afterEach(()=> {
+    jest.clearAllMocks()
+  })
+  test('When loaded, shows welcome text with user name', async () => {
     await render(<HomeScreen />)
-    const loading = screen.getByTestId('loading-indicator')
-    return expect(loading).toBeOnTheScreen()
+    const welcome = screen.getByText(`Welcome to Hybrid Training App!`)
+    expect(welcome).toBeOnTheScreen()
   });
-  test('When loaded, displays all the excercises', async () => {
+  test('When loaded, under the welcome text, display two buttons', async () => {
     await render(<HomeScreen />)
-      resolveFetch({
-        json: () => Promise.resolve([      
-          { 
-            id: '1', 
-            name: 'Dominadas de Prueba', 
-            muscleGroup: 'Pull', 
-            category: 'Calisthenics', 
-            image: 'img.png' 
-          }]),
-      } as Response)
-    const list = await screen.findByTestId('exercises-list');
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(list).toBeOnTheScreen()
+    const newWorkoutButton = screen.getByText("New Workout");
+    const viewWorkoutsButton = screen.getByText("View Saved Workouts");
+    expect(newWorkoutButton).toBeOnTheScreen()
+    expect(viewWorkoutsButton).toBeOnTheScreen()
   });
+  test('When "New Workout" button is pressed, navigate to new workout screen', async () => {
+    await render(<HomeScreen />)
+    const newWorkoutButton = screen.getByText("New Workout");
+    await user.press(newWorkoutButton)
+    expect(mockNavigate).toHaveBeenCalledWith("/new-workout")
+    expect(mockNavigate).toHaveBeenCalledTimes(1)
+  })
+  test('When "View Saved Workouts" button is pressed, navigate to saved workouts screen', async () => {
+    await render(<HomeScreen />)
+    const viewWorkoutsButton = screen.getByText("View Saved Workouts");
+    await user.press(viewWorkoutsButton)
+    expect(mockNavigate).toHaveBeenCalledWith("/saved-workouts")
+    expect(mockNavigate).toHaveBeenCalledTimes(1)
+  })
 });
