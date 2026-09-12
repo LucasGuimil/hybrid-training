@@ -1,16 +1,17 @@
 
+import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
-
+const router = useRouter();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Hybrid Training App!</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate("/new-workout")}>
           <Text style={styles.buttonText}>New Workout</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate("/saved-workouts")}>
           <Text style={styles.buttonText}>View Saved Workouts</Text>
         </TouchableOpacity>
       </View>

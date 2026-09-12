@@ -38,7 +38,7 @@ export default function ExerciseList() {
   if (loading) {
     return (
       <View style={styles.center} testID="loading-indicator">
-        <ActivityIndicator size="large" color="#01015f" />
+        <ActivityIndicator size="large" color="#FF5800" />
         <Text>Loading exercises...</Text>
       </View>
     );
