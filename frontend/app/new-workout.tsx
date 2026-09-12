@@ -1,10 +1,11 @@
+import { TEXT_STYLES , COLORS} from "@/constants/theme";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function NewWorkoutScreen() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>New Workout</Text>
-            <Text style={styles.buttonText}>This is where you can create a new workout.</Text>
+            <Text style={styles.subtitle}>This is where you can create a new workout.</Text>
         </View>
     );
 }
@@ -22,25 +23,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 28,
-        fontWeight: 'bold',
+        ...TEXT_STYLES.title,
         marginBottom: 20,
-        color: '#1f2937'
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 20
-    },
-    button: {
-        backgroundColor: '#FF5800',
-        padding: 10,
-        borderRadius: 5,
-        width: '48%'
-    },
-    buttonText: {
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: 'bold'
+    subtitle: {
+        ...TEXT_STYLES.subtitle,
+        color: COLORS.textPrimary,
     }
 })

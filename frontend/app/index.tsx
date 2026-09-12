@@ -1,6 +1,8 @@
 
+import Button from "@/components/Button";
+import { TEXT_STYLES } from "@/constants/theme";
 import { useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
 const router = useRouter();
@@ -8,12 +10,8 @@ const router = useRouter();
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Hybrid Training App!</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => router.navigate("/new-workout")}>
-          <Text style={styles.buttonText}>New Workout</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => router.navigate("/saved-workouts")}>
-          <Text style={styles.buttonText}>View Saved Workouts</Text>
-        </TouchableOpacity>
+        <Button title="View Saved Workouts" onPress={() => router.navigate("/saved-workouts")} />
+        <Button title="New Workout" onPress={() => router.navigate("/new-workout")} />
       </View>
     </View>
   );
@@ -32,25 +30,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#1f2937'
+    ...TEXT_STYLES.title,
+    marginBottom: 20
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20
-  },
-  button: {
-    backgroundColor: '#FF5800',
-    padding: 10,
-    borderRadius: 5,
-    width: '48%'
-  },
-  buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold'
   }
 })
