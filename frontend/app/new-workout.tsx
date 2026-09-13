@@ -1,4 +1,4 @@
-import { TEXT_STYLES , COLORS} from "@/constants/theme";
+import { TEXT_STYLES , COLORS, CONTAINER_STYLES} from "@/constants/theme";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function NewWorkoutScreen() {
@@ -12,15 +12,7 @@ export default function NewWorkoutScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5f5',
-        paddingTop: 60
-    },
-    center: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        ...CONTAINER_STYLES.largeContainer
     },
     title: {
         ...TEXT_STYLES.title,

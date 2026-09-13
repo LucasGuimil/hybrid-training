@@ -1,6 +1,6 @@
 
 import Button from "@/components/Button";
-import { TEXT_STYLES } from "@/constants/theme";
+import { CONTAINER_STYLES, TEXT_STYLES } from "@/constants/theme";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -10,8 +10,8 @@ const router = useRouter();
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Hybrid Training App!</Text>
       <View style={styles.buttonContainer}>
-        <Button title="View Saved Workouts" onPress={() => router.navigate("/saved-workouts")} />
         <Button title="New Workout" onPress={() => router.navigate("/new-workout")} />
+        <Button title="View Saved Workouts" onPress={() => router.navigate("/saved-workouts")} />
       </View>
     </View>
   );
@@ -19,15 +19,7 @@ const router = useRouter();
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-    paddingTop: 60
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    ...CONTAINER_STYLES.largeContainer
   },
   title: {
     ...TEXT_STYLES.title,

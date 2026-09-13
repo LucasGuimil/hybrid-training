@@ -8,7 +8,7 @@ export const COLORS = {
 }
 
 export const TEXT_STYLES = {
-    title: <TextStyle> {
+    title: <TextStyle>{
         fontSize: 28,
         fontWeight: 'bold',
         color: COLORS.textPrimary
@@ -24,4 +24,14 @@ export const TEXT_STYLES = {
         fontWeight: "bold",
     }
 }
+
+export const CONTAINER_STYLES = {
+    largeContainer: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: COLORS.secondary,
+        paddingTop: 60
+    }
+}
+
 

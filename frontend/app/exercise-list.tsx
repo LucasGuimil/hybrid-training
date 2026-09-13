@@ -1,18 +1,7 @@
+import { COLORS, CONTAINER_STYLES, TEXT_STYLES } from "@/constants/theme";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
-
-
-type Exercise = {
-  id: string;
-  name: string;
-  image?: string;
-  category: string;
-  description?: string;
-  muscleGroup: string;
-  timeBased: boolean;
-};
-
-
+import { Exercise } from "@/interfaces/interfaces";
 
 export default function ExerciseList() {
   
@@ -38,7 +27,7 @@ export default function ExerciseList() {
   if (loading) {
     return (
       <View style={styles.center} testID="loading-indicator">
-        <ActivityIndicator size="large" color="#FF5800" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
         <Text>Loading exercises...</Text>
       </View>
     );
@@ -60,21 +49,16 @@ export default function ExerciseList() {
 
 const styles = StyleSheet.create({
   container: { 
-    flex: 1, 
-    padding: 20, 
-    backgroundColor: '#f5f5f5', 
-    paddingTop: 60 
-  },
-  center: { 
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center' 
+    ...CONTAINER_STYLES.largeContainer
   },
   title: { 
-    fontSize: 28, 
-    fontWeight: 'bold', 
-    marginBottom: 20,
-    color: '#1f2937'
+    ...TEXT_STYLES.title,
+    marginBottom: 20
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   card: { 
     backgroundColor: 'white', 

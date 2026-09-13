@@ -1,4 +1,4 @@
-import { COLORS, TEXT_STYLES } from "@/constants/theme";
+import { COLORS, CONTAINER_STYLES, TEXT_STYLES } from "@/constants/theme";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function SavedWorkoutsScreen() {
@@ -12,10 +12,7 @@ export default function SavedWorkoutsScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5f5',
-        paddingTop: 60
+        ...CONTAINER_STYLES.largeContainer
     },
     center: {
         flex: 1,
