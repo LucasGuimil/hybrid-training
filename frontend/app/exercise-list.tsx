@@ -1,7 +1,7 @@
 import { COLORS, CONTAINER_STYLES, TEXT_STYLES } from "@/constants/theme";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
-import { Exercise } from "@/interfaces/interfaces";
+import { Exercise } from "@/interfaces/index";
 
 export default function ExerciseList() {
   
